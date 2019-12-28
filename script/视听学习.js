@@ -15,7 +15,7 @@ sleep(5000);
 for (let i = 0; i < 6; i++) {
     //截图
     let img = captureScreen();
-    let picture = images.read("/sdcard/Pictures/small_share.jpg");
+    let picture = images.read("/sdcard/脚本/small_share.jpg");
     let tmp = images.matchTemplate(img, picture, { max: 6 }).sortBy("top");
     if (i != 0) {
         let x1 = tmp.matches[0].point.x;
