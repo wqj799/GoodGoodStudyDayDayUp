@@ -1,4 +1,5 @@
 toastLog("脚本开始运行");
+auto();
 device.keepScreenOn(3600 * 1000)
 sleep(random(500, 1000));
 requestScreenCapture();
@@ -7,6 +8,11 @@ requestScreenCapture();
 let deviceWidth = device.width;
 let deviceHeight = device.height;
 
+//点击学习
+let xuexi = desc("学习").findOne();
+clickItemInCenter(xuexi);
+console.log("点击学习");
+sleep(random(1000, 2000));
 //进入要闻
 let yaowen = textContains("要闻").findOne();
 clickItemInCenter(yaowen);
@@ -16,7 +22,7 @@ sleep(5000);
 for (let i = 0; i < 6; i++) {
     //截图
     let img = captureScreen();
-    let picture = images.read("/sdcard/脚本/播报.jpg");
+    let picture = images.read("/sdcard/脚本/bobao.png");
     let tmp = images.matchTemplate(img, picture, { max: 6 }).sortBy("top");
     if (i != 0) {
         let x1 = tmp.matches[0].point.x;
@@ -25,11 +31,12 @@ for (let i = 0; i < 6; i++) {
         swipe(x1, y1, x1, 150, 500);
         sleep(random(500, 1000));
     }
+    console.log(tmp.first().point);
     //找到第一个新闻，点击进入
     click(deviceWidth / 2, tmp.first().point.y);
     console.log("点击新闻");
     sleep(2000);
-    for (let m = 0; m < 10; m++) {
+    for (let m = 0; m < 30; m++) {
         img = captureScreen();
         picture = images.read("/sdcard/脚本/share.png");
         tmp = images.findImage(img, picture, {threshold:1});

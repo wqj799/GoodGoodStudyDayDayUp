@@ -1,4 +1,5 @@
 toastLog("脚本开始运行");
+auto();
 device.keepScreenOn(3600 * 1000)
 sleep(random(500, 1000));
 requestScreenCapture();
@@ -15,7 +16,7 @@ sleep(5000);
 for (let i = 0; i < 6; i++) {
     //截图
     let img = captureScreen();
-    let picture = images.read("/sdcard/脚本/small_share.jpg");
+    let picture = images.read("/sdcard/脚本/small_share.png");
     let tmp = images.matchTemplate(img, picture, { max: 6 }).sortBy("top");
     if (i != 0) {
         let x1 = tmp.matches[0].point.x;
